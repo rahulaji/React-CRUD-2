@@ -1,4 +1,8 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Dashboard(props) {
   return <>
@@ -214,8 +218,8 @@ function Dashboard(props) {
 
                 {/* <!-- Begin Page Content --> */}
                 <div className="container-fluid">
-
-                    {/* <!-- Page Heading --> */}
+                    
+                        {/* <!-- Page Heading --> */}
                     <div className="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
                         <a href="javascript(void)" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -307,9 +311,38 @@ function Dashboard(props) {
                                 </div>
                             </div>
                        </div>
-                       <input type="text" onChange={(e)=>props.data.setValue(e.target.value)}></input>
                     </div>
             </div>
+            
+            <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Batch</th>
+          <th>Mobile</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          {
+            props.data.users.map((user,i)=>{
+                return <tr key={i+1}>
+                     <td>{i+1}</td>
+                     <td>{user.name}</td>
+                     <td>{user.email}</td>
+                     <td>{user.batch}</td>
+                     <td>{user.mobile}</td>
+                     <td><Button variant="primary"><EditIcon/>edit</Button>{' '}
+                       <Button variant="danger"><DeleteIcon/>delete</Button>{' '}</td>
+
+                </tr>
+            })
+          }
+      </tbody>
+    </Table>
+                     
      </div>
  </div>
   </>

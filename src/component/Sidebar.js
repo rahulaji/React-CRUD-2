@@ -1,4 +1,6 @@
 import React from 'react'
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import {Link} from 'react-router-dom'
 
 function Sidebar() {
   return <>
@@ -16,11 +18,13 @@ function Sidebar() {
           <hr className="sidebar-divider my-0"/>
 
 {/* <!-- Nav Item - Dashboard --> */}
+            <Link to='/dashboard'>
             <li className="nav-item active">
-                <a className="nav-link" href="index.html">
+                <div className="nav-link">
                     <i className="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span></div>
             </li>
+            </Link>
 
 {/* <!-- Divider --> */}
            <hr className="sidebar-divider"/>
@@ -31,21 +35,15 @@ function Sidebar() {
           </div>
 
 {/* <!-- Nav Item - Pages Collapse Menu --> */}
-        <li className="nav-item">
-            <a className="nav-link collapsed" href="javascript(void)" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i className="fas fa-fw fa-cog"></i>
-                <span>Components</span>
-            </a>
-       <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div className="bg-white py-2 collapse-inner rounded">
-                <h6 className="collapse-header">Custom Components:</h6>
-                <a className="collapse-item" href="buttons.html">Buttons</a>
-                <a className="collapse-item" href="cards.html">Cards</a>
-            </div>
-    </div>
-</li>
-
+        <Link to='/add-user'>
+            <li className="nav-item">
+                <div className="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <PersonAddIcon/>&nbsp;
+                    <span>Add-Users</span>
+                </div>
+            </li>
+        </Link>
 {/* <!-- Nav Item - Utilities Collapse Menu --> */}
     <li className="nav-item">
             <a className="nav-link collapsed" href="javascript(void)" data-toggle="collapse" data-target="#collapseUtilities"
