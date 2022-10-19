@@ -3,8 +3,15 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import {useNavigate} from 'react-router-dom'
 
 function Dashboard(props) {
+    let navigate=useNavigate()
+    let handleDelete=(i)=>{
+        let newdata=[...props.data.users]
+        newdata.splice(i,1)
+        props.data.setUsers(newdata)
+    }
   return <>
         {/* <!-- Content Wrapper --> */}
         <div id="content-wrapper" className="d-flex flex-column">
@@ -328,14 +335,14 @@ function Dashboard(props) {
       <tbody>
           {
             props.data.users.map((user,i)=>{
-                return <tr key={i+1}>
+                return <tr key={i}>
                      <td>{i+1}</td>
                      <td>{user.name}</td>
                      <td>{user.email}</td>
                      <td>{user.batch}</td>
                      <td>{user.mobile}</td>
-                     <td><Button variant="primary"><EditIcon/>edit</Button>{' '}
-                       <Button variant="danger"><DeleteIcon/>delete</Button>{' '}</td>
+                     <td><Button variant="primary" onClick={()=>navigate(`/edit-user/${i}`)}><EditIcon/>edit</Button>{' '}
+                       <Button variant="danger" onClick={()=>handleDelete(i)}><DeleteIcon/>delete</Button>{' '}</td>
 
                 </tr>
             })

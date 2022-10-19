@@ -3,8 +3,8 @@ import {useState} from 'react'
 import Dashboard from './component/Dashboard';
 import Sidebar from './component/Sidebar';
 import AddUser from './component/AddUser';
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
-
+import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom';
+import EditUser from './component/EditUser';
 
 function App() {
    let data={
@@ -39,9 +39,12 @@ function App() {
    <div id="wrapper">
     <BrowserRouter>
        <Sidebar/>
+       
        <Routes>
-           <Route path='/dashboard' element={<Dashboard data={{data,users}}/>}/>
+           <Route path='/dashboard' element={<Dashboard data={{data,users,setUsers}}/>}/>
            <Route path='/add-user' element={<AddUser data={{users,setUsers}}/>}/>
+           <Route path='/edit-user/:id' element={<EditUser data={{users,setUsers}}/>}/>
+           <Route path='*' element={<Navigate to='/add-user'/>}/>
        </Routes>
     
     </BrowserRouter>
